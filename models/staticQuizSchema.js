@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
-const Question = require("./QuestionSchema.js");
+const Question = require("./questionSchema.js");
 
 const quizSchema = new Schema(
   {
