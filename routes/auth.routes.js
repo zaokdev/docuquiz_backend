@@ -10,7 +10,6 @@ router.post("/login", async (req, res) => {
       .status(400)
       .json({ message: "Se requiere usuario y contraseña" });
 
-  console.log(username);
   const result = await login(username, password);
 
   if (!result.token) return res.json(result);

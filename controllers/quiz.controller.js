@@ -11,8 +11,6 @@ async function getQuiz(req, res) {
 }
 
 async function addQuiz(req, res) {
-  console.log(req.body);
-  console.log(req.user);
   if (
     !req.body ||
     !req.body.quizTitle ||
