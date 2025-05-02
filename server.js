@@ -26,7 +26,6 @@ const port = process.env.PORT || 5000;
 
 app.use(express.urlencoded({ extended: false }));
 
-// Ruta para subir y leer el PDF (pondré esta en el server.js porque no pondré más rutas con read-pdf :p)
 app.post("/api/read-pdf", upload.single("pdf"), async (req, res) => {
   try {
     if (!req.file) {

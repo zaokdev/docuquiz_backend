@@ -1,5 +1,5 @@
 const jwt = require("jsonwebtoken");
-const bcrypt = require("bcrypt"); // Changed from destructuring to direct import
+const bcrypt = require("bcrypt");
 const User = require("../models/userSchema.js");
 
 const login = async (username, password) => {
@@ -8,11 +8,9 @@ const login = async (username, password) => {
     console.log(username);
     if (!jwtSecret) throw new Error("JWT_SECRET not configured");
 
-    // Use findOne instead of find
     const user = await User.findOne({ username: username });
     if (!user) return { message: "No se encontró" };
 
-    // Compare passwords
     const result = await bcrypt.compare(password, user.password);
     if (!result) return { message: "Contraseña incorrecta" };
 
@@ -27,7 +25,6 @@ const login = async (username, password) => {
     return {
       token,
       user: {
-        // Return some user info (optional)
         id: user._id,
         username: user.username,
       },

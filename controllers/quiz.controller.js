@@ -65,7 +65,7 @@ async function editQuiz(req, res) {
   const { id } = req.user;
   const isTheSameUser = verifyUserIsTheSame(id, quiz.quizCreatorId);
 
-  if (!isTheSame) {
+  if (!isTheSameUser) {
     return res.status(401).json({
       message: "No eres el autor de este quiz, no puedes modificarlo",
     });
