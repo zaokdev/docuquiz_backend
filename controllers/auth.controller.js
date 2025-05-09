@@ -5,8 +5,8 @@ const User = require("../models/userSchema.js");
 const login = async (username, password) => {
   try {
     const jwtSecret = process.env.JWT_SECRET;
-    console.log(username);
-    if (!jwtSecret) throw new Error("JWT_SECRET not configured");
+
+    if (!jwtSecret) throw new Error("JWT_SECRET no configurado");
 
     const user = await User.findOne({ username: username });
     if (!user) return { message: "No se encontró" };

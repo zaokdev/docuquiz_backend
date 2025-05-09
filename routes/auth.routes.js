@@ -13,12 +13,13 @@ router.post("/login", async (req, res) => {
   const result = await login(username, password);
 
   if (!result.token) return res.json(result);
+  
   res
     .cookie("access_token", result.token, {
       httpOnly: true,
       maxAge: 100 * 60 * 60,
     })
-    .json(result.token);
+    .json({token: result.token});
 });
 
 router.post("/register", async (req, res) => {

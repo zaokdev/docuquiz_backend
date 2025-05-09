@@ -58,9 +58,9 @@ async function apiCall(openai, PDFtext) {
           ${staticQuizFormat}
 
         2. **Cantidad y tipos**:  
-          - 30 preguntas mínimo.  
-          - 15 "unique", 5 "multiple", 8 "true_false", 2 "free".
-          - Que sean en diferente orden, no seguidas de todo un tipo. 
+          - 4 preguntas mínimo.  
+          - 1 de cada uno.
+        
 
         3. Las preguntas deben ser relevantes al texto proporcionado.
         4. Solo responde con el JSON, sin comentarios adicionales.
