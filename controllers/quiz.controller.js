@@ -75,9 +75,41 @@ async function editQuiz(req, res) {
   res.status(200).json({ quizUpdate });
 }
 
+async function gradeLocalQuiz(req,res) {
+  const {selectedAnswers,questions} = req.body
+  const totalQuestions = questions.length
+  let correctSelectedAnswers = 0
+  console.log(`Preguntas totales: ${totalQuestions}`)
+  selectedAnswers.forEach((answer) => {
+    const {correct_answers, type} = questions[answer.number-1]
+    switch (type){
+      case "unique":
+        if (correct_answers == answer.answer) correctSelectedAnswers++
+        break;
+      
+        //TODO
+      case "multiple":
+        correctSelectedAnswers++
+        break;
+      
+      case "true_false":
+        if(correct_answers.toString() == answer.answer) correctSelectedAnswers++
+        break;
+      
+      case "free":
+        correctSelectedAnswers++
+        break;
+    }
+  });
+
+  console.log(`Respuestas correctas: ${correctSelectedAnswers}`)
+
+}
+
 module.exports = {
   getQuiz,
   addQuiz,
   deleteQuiz,
   editQuiz,
+  gradeLocalQuiz
 };
