@@ -23,7 +23,7 @@ const login = async (username, password) => {
     );
 
     return {
-      token,
+      token: token,
       user: {
         id: user._id,
         username: user.username,
@@ -31,7 +31,7 @@ const login = async (username, password) => {
     };
   } catch (error) {
     console.error("Login error:", error);
-    return { message: "Error en el servidor" };
+    return { error: "Error en el servidor" };
   }
 };
 
@@ -47,7 +47,6 @@ const register = async (username, email, password) => {
     });
 
     return {
-      message: "Creado",
       user: {
         id: newUser._id,
         username: newUser.username,
@@ -64,7 +63,23 @@ const register = async (username, email, password) => {
   }
 };
 
+const verifyUser = (req, res) => {
+  try {
+    const token = req.cookies.token;
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+
+    // Devuelve los datos del usuario sin exponer el token
+    res.json({
+      isAuthenticated: true,
+      decoded,
+    });
+  } catch (error) {
+    res.json({ isAuthenticated: false });
+  }
+};
+
 module.exports = {
   login,
   register,
+  verifyUser,
 };
