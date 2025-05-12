@@ -5,7 +5,9 @@ const {
   addQuiz,
   deleteQuiz,
   editQuiz,
-  gradeLocalQuiz
+  getUsersQuiz,
+  gradeLocalQuiz,
+  gradeOnlineQuiz,
 } = require("../controllers/quiz.controller.js");
 const authenticateToken = require("../middleware/authMiddleware.js");
 
@@ -13,6 +15,8 @@ router.get("/:id", getQuiz);
 router.post("/", authenticateToken, addQuiz);
 router.delete("/:id", authenticateToken, deleteQuiz);
 router.put("/:id", authenticateToken, editQuiz);
-router.post("/grade", gradeLocalQuiz)
+router.post("/gradeLocal", gradeLocalQuiz);
+router.post("/gradeOnline", gradeOnlineQuiz);
+router.get("/byUser/get", authenticateToken, getUsersQuiz);
 
 module.exports = router;

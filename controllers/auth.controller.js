@@ -65,7 +65,8 @@ const register = async (username, email, password) => {
 
 const verifyUser = (req, res) => {
   try {
-    const token = req.cookies.token;
+    const token = req.cookies.access_token;
+    if (!token) return res.json({ isAuthenticated: false });
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
     // Devuelve los datos del usuario sin exponer el token
@@ -78,8 +79,22 @@ const verifyUser = (req, res) => {
   }
 };
 
+const logout = (req, res) => {
+  try {
+    // Limpiar la cookie que contiene el token
+    res.clearCookie("access_token");
+    return res.json({ success: true, message: "Sesión cerrada correctamente" });
+  } catch (error) {
+    console.error("Logout error:", error);
+    return res
+      .status(500)
+      .json({ success: false, message: "Error al cerrar sesión" });
+  }
+};
+
 module.exports = {
   login,
   register,
   verifyUser,
+  logout,
 };

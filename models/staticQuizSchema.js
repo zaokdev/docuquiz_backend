@@ -10,6 +10,10 @@ const quizSchema = new Schema(
       maxlength: 100,
     },
     questions: [Question.schema],
+    quizCreatorName: {
+      type: String,
+      required: true,
+    },
     quizCreatorId: {
       type: String,
       required: true,
