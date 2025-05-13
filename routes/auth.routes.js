@@ -24,6 +24,10 @@ router.post("/login", async (req, res) => {
     .cookie("access_token", result.token, {
       httpOnly: true,
       maxAge: 7 * 24 * 60 * 60 * 1000,
+      secure: true,
+      sameSite: none,
+      domain: "docuquiz.onrender.com",
+      path: "/",
     })
     .status(200)
     .json(result);
