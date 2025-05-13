@@ -25,7 +25,7 @@ router.post("/login", async (req, res) => {
       httpOnly: true,
       maxAge: 7 * 24 * 60 * 60 * 1000,
       secure: true,
-      sameSite: none,
+      sameSite: "none",
       domain: "docuquiz.onrender.com",
       path: "/",
     })
