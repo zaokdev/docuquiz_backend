@@ -20,7 +20,7 @@ const openai = new OpenAI({
 const app = express();
 app.use(
   cors({
-    origin: "https://docuquiz-frontend.vercel.app/",
+    origin: "https://docuquiz-frontend.vercel.app",
     credentials: true,
   })
 );
