@@ -83,6 +83,8 @@ const logout = (req, res) => {
   try {
     // Limpiar la cookie que contiene el token
     res.clearCookie("access_token");
+    console.log(res.cookies);
+
     return res.json({ success: true, message: "Sesión cerrada correctamente" });
   } catch (error) {
     console.error("Logout error:", error);

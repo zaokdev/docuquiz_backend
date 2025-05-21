@@ -190,7 +190,6 @@ async function gradeOnlineQuiz(req, res) {
     }
   });
 
-  console.log(answerScoreSheet);
   res.status(200).json(answerScoreSheet);
 }
 
