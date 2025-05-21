@@ -82,9 +82,15 @@ const verifyUser = (req, res) => {
 const logout = (req, res) => {
   try {
     // Limpiar la cookie que contiene el token
-    res.clearCookie("access_token");
-    console.log(res.cookies);
-
+    res.clearCookie("access_token", {
+      httpOnly: true,
+      maxAge: 7 * 24 * 60 * 60 * 1000,
+      secure: true,
+      sameSite: "none",
+      domain: "docuquiz.onrender.com",
+      path: "/",
+    });
+    console.log(req.cookies);
     return res.json({ success: true, message: "Sesión cerrada correctamente" });
   } catch (error) {
     console.error("Logout error:", error);
